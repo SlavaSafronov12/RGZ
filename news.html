@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фармсинтез — новости</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+</head>
+<body>
+    <div class="container">
+        <main>
+            <section class="hero">
+                <h1>Новости</h1>
+                <p class="lead">События компании, сообщения о препаратах, производстве и раскрытии информации.</p>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner news-card">
+                    <div class="news-date">21.01.2026</div>
+                    <h2>Феназид включен в клинические рекомендации</h2>
+                    <p>Лекарственный препарат Феназид включен в клинические рекомендации по туберкулезу у взрослых.</p>
+                    <button onclick="showNews('n1')">Показать</button>
+                    <div id="n1" class="full-news">
+                        <p>Препарат Феназид применяется как противотуберкулезное средство. Включение в рекомендации показывает практическую значимость продукта и усиливает его позицию в профильной терапии.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner news-card">
+                    <div class="news-date">14.11.2025</div>
+                    <h2>Неовир включен в рекомендации по ОРВИ у взрослых</h2>
+                    <p>Компания сообщила о включении лекарственного препарата Неовир в клинические рекомендации.</p>
+                    <button onclick="showNews('n2')">Показать</button>
+                    <div id="n2" class="full-news">
+                        <p>Новость связана с препаратом Неовир и направлением инфекционных заболеваний. Для компании это важный информационный повод в продуктовой линейке госпитального и терапевтического применения.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner news-card">
+                    <div class="news-date">10.07.2025</div>
+                    <h2>Подтверждено соответствие требованиям GMP ЕАЭС</h2>
+                    <p>Фармсинтез прошел периодическое подтверждение соответствия лицензионным требованиям.</p>
+                    <button onclick="showNews('n3')">Показать</button>
+                    <div id="n3" class="full-news">
+                        <p>Соответствие требованиям GMP важно для фармацевтического производства: оно подтверждает контроль качества, стабильность процессов и готовность площадки выпускать лекарственную продукцию по отраслевым нормам.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner news-card">
+                    <div class="news-date">29.11.2024</div>
+                    <h2>Увеличен срок годности препарата Сегидрин</h2>
+                    <p>Лаборатория и служба качества провели исследования стабильности лекарственного препарата.</p>
+                    <button onclick="showNews('n4')">Показать</button>
+                    <div id="n4" class="full-news">
+                        <p>Увеличение срока годности важно для логистики и медицинских организаций: препарат проще хранить, планировать закупки и использовать в установленный период без потери качества.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner news-card">
+                    <div class="news-date">19.11.2024</div>
+                    <h2>Зарегистрирован препарат Алпростадил</h2>
+                    <p>Фармсинтез зарегистрировал лекарственный препарат группы сосудорасширяющих средств.</p>
+                    <button onclick="showNews('n5')">Показать</button>
+                    <div id="n5" class="full-news">
+                        <p>Алпростадил относится к средствам, применяемым при хронических артериальных заболеваниях. Регистрация российского препарата расширяет доступность терапии для пациентов.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner news-card">
+                    <div class="news-date">15.05.2024</div>
+                    <h2>Зарегистрирован противоопухолевый препарат сорафениб</h2>
+                    <p>Компания сообщила о регистрации препарата для онкологического направления.</p>
+                    <button onclick="showNews('n6')">Показать</button>
+                    <div id="n6" class="full-news">
+                        <p>Сорафениб относится к средствам таргетной терапии. Такие препараты применяются при отдельных видах злокачественных новообразований и занимают важное место в современной онкологии.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner news-card">
+                    <div class="news-date">08.05.2024</div>
+                    <h2>Зарегистрирован пеметрексед для лечения рака легких</h2>
+                    <p>Фармсинтез сообщил о регистрации противоопухолевого препарата пеметрексед.</p>
+                    <button onclick="showNews('n7')">Показать</button>
+                    <div id="n7" class="full-news">
+                        <p>Пеметрексед используется в терапии немелкоклеточного рака легкого. Новость относится к развитию онкологического портфеля компании.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner news-card">
+                    <div class="news-date">08.05.2024</div>
+                    <h2>Зарегистрирована вакцина Сай-Би-Вак</h2>
+                    <p>Минздрав России зарегистрировал вакцину для профилактики вирусного гепатита B у взрослых.</p>
+                    <button onclick="showNews('n8')">Показать</button>
+                    <div id="n8" class="full-news">
+                        <p>Сай-Би-Вак связана с профилактикой гепатита B. Для компании эта новость важна как пример работы с препаратами профилактического назначения.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner news-card">
+                    <div class="news-date">25.12.2023</div>
+                    <h2>Развитие задач в области R&amp;D</h2>
+                    <p>Компания описала работу дирекции по инновациям и исследовательским проектам.</p>
+                    <button onclick="showNews('n9')">Показать</button>
+                    <div id="n9" class="full-news">
+                        <p>R&amp;D-направление включает фармацевтическую разработку, исследования молекул, оптимизацию технологий и сопровождение перспективных проектов.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner news-card">
+                    <div class="news-date">25.12.2023</div>
+                    <h2>Услуги по фармацевтической разработке</h2>
+                    <p>Фармсинтез представил опыт выполнения работ в области фармацевтической разработки.</p>
+                    <button onclick="showNews('n10')">Показать</button>
+                    <div id="n10" class="full-news">
+                        <p>Контрактная разработка позволяет компании работать с партнерами, использовать научную инфраструктуру и развивать компетенции в создании лекарственных средств.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="menu">
+            <a href="index.html">О компании</a>
+            <a class="active" href="news.html">Новости</a>
+            <a href="currency.html">Курс валют</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="video.html">Видео</a>
+        </nav>
+    </div>
+
+    <footer>ПАО «Фармсинтез» · новости компании</footer>
+
+    <script>
+        function showNews(id) {
+            let block = document.getElementById(id);
+            block.style.display = block.style.display == 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

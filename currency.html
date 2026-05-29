@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фармсинтез — курс валют</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+</head>
+<body>
+    <div class="container">
+        <main>
+            <section class="hero">
+                <h1>Курс валют</h1>
+                <p class="lead">Калькулятор российского рубля и узбекского сума. Вариант валюты: UZS.</p>
+            </section>
+
+            <section class="info-section">
+                <div class="section-inner">
+                <h2>Калькулятор RUB ↔ UZS</h2>
+                <p class="muted">Курс загружается с сервиса cbr-xml-daily.ru по данным Банка России.</p>
+
+                <div class="form-row">
+                    <input id="rub" type="number" placeholder="Сумма в рублях">
+                    <button onclick="rubToUzs()">Перевести в UZS</button>
+                </div>
+
+                <div class="form-row">
+                    <input id="uzs" type="number" placeholder="Сумма в сумах">
+                    <button onclick="uzsToRub()">Перевести в RUB</button>
+                </div>
+
+                <div id="rate-info" class="result">Курс загружается...</div>
+                <div id="calc-result" class="result"></div>
+                </div>
+            </section>
+
+            <section class="info-section section-accent">
+                <div class="section-inner">
+                <h2>Динамика курса UZS за месяц</h2>
+                <p>Нажмите на столбец, чтобы увидеть дату и курс.</p>
+                <div id="chart" class="chart"></div>
+                <div id="chart-info" class="result"></div>
+                </div>
+            </section>
+        </main>
+
+        <nav class="menu">
+            <a href="index.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a class="active" href="currency.html">Курс валют</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="video.html">Видео</a>
+        </nav>
+    </div>
+
+    <footer>ПАО «Фармсинтез» · калькулятор валют</footer>
+
+    <script>
+        let uzsRate = 0;
+        let uzsNominal = 1;
+
+        function loadCurrency() {
+            fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(json) {
+                    let uzs = json.Valute.UZS;
+                    uzsRate = uzs.Value;
+                    uzsNominal = uzs.Nominal;
+                    document.getElementById('rate-info').innerText =
+                        uzsNominal + ' UZS = ' + uzsRate.toFixed(4) + ' RUB, дата: ' + json.Date;
+                    loadHistory(json);
+                });
+        }
+
+        function rubToUzs() {
+            let rub = Number(document.getElementById('rub').value);
+            let result = rub * uzsNominal / uzsRate;
+            document.getElementById('calc-result').innerText = rub + ' RUB = ' + result.toFixed(2) + ' UZS';
+        }
+
+        function uzsToRub() {
+            let uzs = Number(document.getElementById('uzs').value);
+            let result = uzs * uzsRate / uzsNominal;
+            document.getElementById('calc-result').innerText = uzs + ' UZS = ' + result.toFixed(2) + ' RUB';
+        }
+
+        async function loadHistory(firstJson) {
+            let items = [firstJson];
+            let previousUrl = firstJson.PreviousURL;
+
+            for(let i = 0; i < 31; i++) {
+                let response = await fetch('https:' + previousUrl);
+                let json = await response.json();
+                items.unshift(json);
+                previousUrl = json.PreviousURL;
+            }
+
+            drawChart(items);
+        }
+
+        function drawChart(items) {
+            let chart = document.getElementById('chart');
+            chart.innerHTML = '';
+            let values = items.map(function(item) {
+                return item.Valute.UZS.Value;
+            });
+            let max = Math.max(...values);
+
+            for(let i = 0; i < items.length; i++) {
+                let item = items[i];
+                let bar = document.createElement('div');
+                let value = item.Valute.UZS.Value;
+                let date = item.Date.substring(0, 10);
+
+                bar.className = 'bar';
+                bar.style.height = Math.max(12, value / max * 240) + 'px';
+                bar.title = date + ': ' + value.toFixed(4);
+                bar.onclick = function() {
+                    let bars = document.querySelectorAll('.bar');
+                    for(let j = 0; j < bars.length; j++) {
+                        bars[j].classList.remove('active');
+                    }
+                    bar.classList.add('active');
+                    document.getElementById('chart-info').innerText =
+                        'Дата: ' + date + ', курс: ' + item.Valute.UZS.Nominal + ' UZS = ' + value.toFixed(4) + ' RUB';
+                };
+
+                chart.appendChild(bar);
+            }
+        }
+
+        loadCurrency();
+    </script>
+</body>
+</html>
